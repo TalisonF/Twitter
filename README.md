@@ -4,17 +4,16 @@
 
 - abrir o diretório e executar o comando no CMD: 
 
-    # composer install
+    composer install
 
-    - Configurar o banco de dados
-
-    # ./vendor/bin/doctrine orm:schema-tool:update --force
+- Configurar o banco de dados
+     ./vendor/bin/doctrine orm:schema-tool:update --force
 
 - apos finalizar a instalação de todos componentes, abrir no CMD no diretório e executar (vai iniciar o servidor):
 
-    # php -S 0.0.0.0:1010 -t public/ public/index.php
+    php -S 0.0.0.0:8080 -t public/ public/index.php
     
-- abrir no browser: http://127.0.0.1:1010/
+- abrir no browser: http://127.0.0.1:8080/
 
 - para cada mudanca no banco de dados executar o comando no diretorio do repositorio:
 
