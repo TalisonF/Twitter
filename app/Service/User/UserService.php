@@ -22,12 +22,14 @@ class UserService
     protected $UserRepository;
 
     public function newUser($post){
-        
+
+        print_r($post);
+
         $user = new User();
 
         $user->setHash($this->genHash());
-        $user->setName($post['nome']);
 
+        $user->setName($post['nome']);
         $user->setEmail($post['email']);
         $user->setPassword($post['senha']);
 
