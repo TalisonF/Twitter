@@ -5,6 +5,9 @@
 $app->group('', function(){
 
     $this->get('/', ['\App\Controller\System\IndexController', 'index'])->setName('home');
+    $this->get('/inscreverse', ['\App\Controller\System\IndexController', 'inscreverse'])->setName('inscreverse');
+    $this->post('/inscreverse', ['\App\Controller\System\UserController', 'cadastrar'])->setName('cadastrar');
+
 
 });
 

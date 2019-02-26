@@ -11,7 +11,11 @@ use App\Controller\Controller;
 class IndexController extends Controller
 {
     public function index($request, $response){
-        $test = "Bem vindo";
-        $this->view->render($response, "/system/index/index.php", ['var_a' =>  $test ]);
+        $this->view->render($response, "/system/index/index.php");
     }
+
+    public function inscreverse($request, $response){
+        $this->view->render($response, "/system/index/inscreverse.php");
+    }
+
 }
