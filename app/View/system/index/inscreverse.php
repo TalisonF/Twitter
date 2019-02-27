@@ -42,9 +42,7 @@
               <?php if( isset($success) && !$success) { ?>
                 <small class="form-text text-danger">*Erro ao tentar realizar o cadastro, verifique 
                 se os campos foram preenchidos corretamentes. </small>
-              <?php
-                }
-              ?>
+              <?php } ?>
 
             </form>
 
@@ -57,21 +55,28 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-Success" id="exampleModalLabel">Sucesso!</h5>
+      <div class="modal-header corNav ">
+        <h5 class="modal-title " id="exampleModalLabel">Sucesso!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        Usuario foi cadastrado com sucesso. Para começar a ultilizar basta fazer login!
+      <div class="modal-body text-primary" >
+      <div class="row">
+          <div class="col-2">
+            <img src="/img/twitter_logo.png" />
+          </div>
+          <div class="col-10">
+            Usuario cadastrado com sucesso! <br> Basta fazer login para twittar!
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">Cadastrar outro usuario</button>
-        <a href="/"><button type="button" class="btn btn-success">Pagina inicial</button></a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cadastrar outro usuario</button>
+        <a href="/"><button type="button" class="btn btn-primary">Login</button></a>
       </div>
     </div>
   </div>
@@ -85,9 +90,9 @@
 <?php include __DIR__ . "/../../base/footer.php"; ?>
 
 <script>
-  <?php if(isset($success) && $success) {?>
-  $('#exampleModal').modal('show');
-  <?php }?>
+  <?php //if(isset($success) && $success) {?>
+  $('#ModalSuccess').modal('show');
+  <?php //}?>
 </script>
 
 

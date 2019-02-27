@@ -22,22 +22,41 @@ class UserService
     protected $UserRepository;
 
     public function newUser($post){
-
-        print_r($post);
-
-        $user = new User();
-
-        $user->setHash($this->genHash());
-
-        $user->setName($post['nome']);
-        $user->setEmail($post['email']);
-        $user->setPassword($post['senha']);
-
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-
-        return true;
         
+        if(count($this->UserRepository->findBy(['email' => $post['email']])) <= 0 ){
+            $user = new User();
+
+            $user->setHash($this->genHash());
+
+            $user->setName($post['nome']);
+            $user->setEmail($post['email']);
+            $user->setPassword(md5($post['senha']));
+
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+
+            if(count($this->UserRepository->findBy(['email' => $post['email']])) == 1 ){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }else {
+            return false;
+        }
+    }
+
+    public function validar($post){
+        
+        $user = $this->UserRepository->findOneBy(['email' => $post['email'] , 'password' => md5($post['senha'])]);
+        if(is_object($user)){
+            $_SESSION['hash'] = $user->getHash();
+            $_SESSION['nome'] = $user->getName();
+            $_SESSION['id'] = $user->getId();
+            return $user;
+        }else{
+            return false;
+        }
     }
    
     /**

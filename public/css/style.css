@@ -31,6 +31,7 @@ h2 {
 	background-color: #1da1f2;
 }
 
+
 .title {
 	color: #1da1f2;
 	font-size: 27px;
@@ -183,4 +184,9 @@ h2 {
 
 .tweet:hover {
     background-color: #f5f8fa;
+}
+
+.corNav{
+    background-color : #1da1f2;
+    color: white;
 }

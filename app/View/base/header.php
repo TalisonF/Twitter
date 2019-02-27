@@ -16,5 +16,15 @@
 
 	<body>
 
+	<nav class="navbar navbar-expand-lg corNav p-4">
+		<div class="container">
+			<div class="navbar-nav">
+				<a class="menuItem" href="/">
+					<img src="/img/twitter_logo_branco.png" class="menuIco"/>
+				</a>
+			</div>
+		</div>
+	</nav>
+
     
 

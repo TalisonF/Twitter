@@ -7,7 +7,13 @@ $app->group('', function(){
     $this->get('/', ['\App\Controller\System\IndexController', 'index'])->setName('home');
     $this->get('/inscreverse', ['\App\Controller\System\IndexController', 'inscreverse'])->setName('inscreverse');
     $this->post('/inscreverse', ['\App\Controller\System\UserController', 'cadastrar'])->setName('cadastrar');
+    $this->post('/autenticar', ['\App\Controller\System\UserController', 'autenticar'])->setName('autenticar');
+    
+});
 
+$app->group('/app', function(){
+    $this->get('/timeline',['\App\Controller\System\AppController', 'timeline'])->setName('timeline');
+    $this->get('/sair',['\App\Controller\System\UserController', 'sair']);
 
 });
 
