@@ -90,9 +90,9 @@
 <?php include __DIR__ . "/../../base/footer.php"; ?>
 
 <script>
-  <?php //if(isset($success) && $success) {?>
+  <?php if(isset($success) && $success) {?>
   $('#ModalSuccess').modal('show');
-  <?php //}?>
+  <?php }?>
 </script>
 
 

@@ -13,6 +13,7 @@ $app->group('', function(){
 
 $app->group('/app', function(){
     $this->get('/timeline',['\App\Controller\System\AppController', 'timeline'])->setName('timeline');
+    $this->post('/tweetar',['\App\Controller\System\AppController', 'tweetar']);
     $this->get('/sair',['\App\Controller\System\UserController', 'sair']);
 
 });

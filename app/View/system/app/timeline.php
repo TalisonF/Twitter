@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg menu">
 	<div class="container">
 	  <div class="navbar-nav">
-	  	<a class="menuItem" href="/timeline">Home</a>
+	  	<a class="menuItem" href="/app/timeline">Home</a>
 	  	<a class="menuItem" href="/app/sair">Sair</a>
 			<img src="/img/twitter_logo.png" class="menuIco"/>
 	  </div>
@@ -15,7 +15,7 @@
 		
 		<div class="col-md-3">
 
-			<div class="perfil">
+			<div class="perfil d-none d-md-block">
 				<div class="perfilTopo">
 
 				</div>
@@ -32,17 +32,17 @@
 
 						<div class="col">
 							<span class="perfilPainelItem">Tweets</span><br />
-							<span class="perfilPainelItemValor"><?=$this->view->qtdetweets?></span>
+							<span class="perfilPainelItemValor">0</span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguindo</span><br />
-							<span class="perfilPainelItemValor"><?=$this->view->qtdeseguindo?></span>
+							<span class="perfilPainelItemValor">0</span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguidores</span><br />
-							<span class="perfilPainelItemValor"><?=$this->view->qtdeseguidores?></span>
+							<span class="perfilPainelItemValor">0</span>
 						</div>
 
 					</div>
@@ -55,7 +55,7 @@
 		<div class="col-md-6">
 			<div class="row mb-2">
 				<div class="col tweetBox">
-					<form method="post" action="tweet">
+					<form method="post" action="/app/tweetar">
 						<textarea placeholder="O que está acontecendo?" name="tweet" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 						
 						<div class="col mt-2 d-flex justify-content-end">
@@ -65,23 +65,25 @@
 					</form>
 				</div>
 			</div>
-
-			<?php foreach ($this->view->tweets as $tweet) { ?>
+						
+			<?php 
+				
+			foreach ($tweets as $tweet) { ?>
 				<div class="row tweet">
 					<div class="col">
-						<p><strong><?=$tweet['nome']?></strong> <small> <span class="text text-muted">- <?=$tweet['data']?></span></small> </p>
-						<p><?=$tweet['tweet']?></p>
+						<p><strong><?=$tweet->getUser()->getName()?></strong> <small> <span class="text text-muted">- <?=$tweet->getCreatedAt()->format('d/m/Y h:s')?> </span></small> </p>
+						<p><?=$tweet->getTweet()?></p>
 
-						<br />
-						<?php if(!($tweet['id_usuario'] != $_SESSION['id'])) {?>
+						<br/>
+						<?php  if(!($tweet->getUser()->getId() != $_SESSION['id']) ) {?>
 						<div class="col d-flex justify-content-end">
-								<a href="/remover_tweet?id_tweet=<?=$tweet['id']?>"><button  class="btn btn-danger"><small>Remover</small></button></a>
+								<a href="/remover_tweet?id_tweet=<?=$tweet->getId()?>"><button  class="btn btn-danger"><small>Remover</small></button></a>
 							</div>
 						
-						<?php }?>
+						<?php } ?>
 					</div>
 				</div>
-			<?php }?>	
+			<?php }  ?>	
 			
 		</div>
 
