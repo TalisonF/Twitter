@@ -13,9 +13,22 @@ $app->group('', function(){
 
 $app->group('/app', function(){
     $this->get('/timeline',['\App\Controller\System\AppController', 'timeline'])->setName('timeline');
-    $this->post('/tweetar',['\App\Controller\System\AppController', 'tweetar']);
+    
+    $this->get('/quemSeguir[/{pesquisarPor}]',['\App\Controller\System\AppController', 'quemSeguir'])->setName('quemSeguir');
+    
+    
     $this->get('/sair',['\App\Controller\System\UserController', 'sair']);
+    
+    $this->get('/seguir[/{hash}]',['\App\Controller\System\UserController', 'seguir']);
+    
+    $this->get('/deixarDeSeguir[/{hash}]',['\App\Controller\System\UserController', 'pararSeguir']);
+    
+    $this->get('/remover_tweet/[{hash}]',['\App\Controller\System\AppController', 'RemoverTweet']);
 
+
+
+    $this->post('/tweetar',['\App\Controller\System\AppController', 'tweetar']);
+    
 });
 
 

@@ -1,21 +1,11 @@
-<?php include __DIR__ . "/../../base/header.php"; ?>
+<?php include __DIR__ . "/../../base/headerApp.php"; ?>
 
-<nav class="navbar navbar-expand-lg menu">
-	<div class="container">
-	  <div class="navbar-nav">
-	  	<a class="menuItem" href="/app/timeline">Home</a>
-	  	<a class="menuItem" href="/app/sair">Sair</a>
-			<img src="/img/twitter_logo.png" class="menuIco"/>
-	  </div>
-	</div>
-</nav>
-
-<div class="container mt-5">
+<div class="container mt-2">
 	<div class="row pt-2">
 		
 		<div class="col-md-3">
 
-			<div class="perfil d-none d-md-block">
+			<div class="perfil">
 				<div class="perfilTopo">
 
 				</div>
@@ -32,7 +22,7 @@
 
 						<div class="col">
 							<span class="perfilPainelItem">Tweets</span><br />
-							<span class="perfilPainelItemValor">0</span>
+							<span class="perfilPainelItemValor"><?=$QtdeTweets?></span>
 						</div>
 
 						<div class="col">
@@ -66,37 +56,73 @@
 				</div>
 			</div>
 						
-			<?php 
-				
-			foreach ($tweets as $tweet) { ?>
+			<?php foreach ($tweets as $tweet) { ?>
 				<div class="row tweet">
 					<div class="col">
-						<p><strong><?=$tweet->getUser()->getName()?></strong> <small> <span class="text text-muted">- <?=$tweet->getCreatedAt()->format('d/m/Y h:s')?> </span></small> </p>
-						<p><?=$tweet->getTweet()?></p>
+						<p><strong><?=$tweet['name']?></strong> <small> <span class="text text-muted">- <?=$tweet['data']?> </span></small> </p>
+						<p><?=$tweet['tweet']?></p>
 
 						<br/>
-						<?php  if(!($tweet->getUser()->getId() != $_SESSION['id']) ) {?>
+						<?php  if(($tweet['user_id'] == $_SESSION['id']) ) {?>
 						<div class="col d-flex justify-content-end">
-								<a href="/remover_tweet?id_tweet=<?=$tweet->getId()?>"><button  class="btn btn-danger"><small>Remover</small></button></a>
+								<a href="/app/remover_tweet/<?=$tweet['hash']?>"><button  class="btn btn-danger"><small>Remover</small></button></a>
 							</div>
 						
 						<?php } ?>
 					</div>
 				</div>
-			<?php }  ?>	
-			
+			<?php } ?>
+
 		</div>
-
-
-		<div class="col-md-3">
+		<div class="col-md-3 d-none d-md-block">
 			<div class="quemSeguir">
 				<span class="quemSeguirTitulo">Quem seguir</span><br />
 				<hr />
-				<a href="/quemSeguir" class="quemSeguirTxt">Procurar por pessoas conhecidas</a>
+				<a href="/app/quemSeguir" class="quemSeguirTxt">Procurar por pessoas conhecidas</a>
 			</div>
 		</div>
 
 	</div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header corNav ">
+        <h5 class="modal-title " id="exampleModalLabel">Excluir Tweet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-primary" >
+      <div class="row">
+          <div class="col-2">
+            <img src="/img/twitter_logo.png" />
+          </div>
+          <div class="col-10">
+			<?php if($_GET['Excluir'] == 'true') {?>
+            	Tweet excluido com sucesso!
+			<?php } else {?>
+				Falha ao exluir o Tweet!
+			<?php }?>
+			 
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <?php include __DIR__ . "/../../base/footer.php"; ?>
+
+<script>
+  <?php if(isset($_GET['Excluir'])) {?>
+  $('#ModalDelete').modal('show');
+  <?php }?>
+</script>

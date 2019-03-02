@@ -1,17 +1,5 @@
-<nav class="navbar navbar-expand-lg menu">
-	<div class="container">
-	  <div class="navbar-nav">
-	  	<a class="menuItem" href="/timeline">
-	  		Home
-	  	</a>
+<?php include __DIR__ . "/../../base/headerApp.php"; ?>
 
-	  	<a class="menuItem" href="/sair">
-	  		Sair
-	  	</a>
-			<img src="/img/twitter_logo.png" class="menuIco" />
-	  </div>
-	</div>
-</nav>
 
 <div class="container mt-5">
 	<div class="row pt-2">
@@ -35,17 +23,17 @@
 
 					<div class="col">
 							<span class="perfilPainelItem">Tweets</span><br />
-							<span class="perfilPainelItemValor"><?=$this->view->qtdetweets?></span>
+							<span class="perfilPainelItemValor"></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguindo</span><br />
-							<span class="perfilPainelItemValor"><?=$this->view->qtdeseguindo?></span>
+							<span class="perfilPainelItemValor"></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguidores</span><br />
-							<span class="perfilPainelItemValor"><?=$this->view->qtdeseguidores?></span>
+							<span class="perfilPainelItemValor"></span>
 						</div>
 
 					</div>
@@ -61,19 +49,25 @@
 				<div class="col">
 					<div class="card">
 						<div class="card-body">
-							<form method="get" action="/quemSeguir">
+							
 								<div class="input-group mb-3">
-									<input type="text" name="pequisarPor" class="form-control" placeholder="Quem você está procurando?">
+									<input type="text" id="pequisarPor" class="form-control" placeholder="Quem você está procurando?">
 									<div class="input-group-append">
-										<button class="btn btn-primary" type="submit">Procurar</button>
+										<button class="btn btn-primary" onclick="enviar()">Procurar</button>
 									</div>
 								</div>
-							</form>
+							
 						</div>
 					</div>
 				</div>
 			</div>
-			<?php foreach ($this->view->usuarios as $usuario) { ?>
+			<script>
+				function enviar(){
+					pesquisarPor = document.getElementById("pequisarPor").value;
+					window.location.href = "/app/quemSeguir/" + pesquisarPor ;
+				}
+			</script>
+			<?php  foreach ($usuarios as $usuario) { ?>
 			<div class="row mb-2">
 				<div class="col">
 				
@@ -81,14 +75,14 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-6">
-									<?=$usuario['nome']?>
+									<?=$usuario['name']?>
 								</div>							
 								<div class="col-md-6 d-flex justify-content-end">
 									<div>
 										<?php if($usuario['seguindo_sn'] == 0){?>
-										<a href="/acao?acao=seguir&id_user=<?=$usuario['id']?>" class="btn btn-success">Seguir</a>
+										<a href="/app/seguir/<?=$usuario['hash']?>" class="btn btn-success">Seguir</a>
 										<?php }else {?>
-										<a href="/acao?acao=deixar_de_seguir&id_user=<?=$usuario['id']?>" class="btn btn-danger">Deixar de seguir</a>
+										<a href="/app/deixarDeSeguir/<?=$usuario['hash']?>" class="btn btn-danger">Deixar de seguir</a>
 										<?php }?>
 									</div>
 								</div>
@@ -99,7 +93,9 @@
 					
 				</div>
 			</div>
-			<?php }?>	
+			<?php } ?>	
 		</div>
 	</div>
 </div>
+
+<?php include __DIR__ . "/../../base/footer.php"; ?>

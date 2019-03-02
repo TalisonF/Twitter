@@ -41,6 +41,20 @@ class TweetService
        return true;
 
     }
+
+    public function deleteTweet($hash){
+        if($hash != null){
+            $tweet = $this->TweetRepository->findOneBy(['hash' => $hash]);
+            if(is_object($tweet)){
+                $tweet->setDeletedAt(new \Datetime());
+                $this->entityManager->persist($tweet);
+                $this->entityManager->flush();
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
     /**
      * GERA UMA HASH UNICA PARA REGISTRO
      * SE EXISTE ELE GERA UMA NOVA - ATE ENCONTRAR

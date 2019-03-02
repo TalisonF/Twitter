@@ -37,8 +37,12 @@ class AppController extends Controller
 
     public function timeline($request, $response){
         
-        $tweets = $this->TweetRepository->findBy(['deleted_at' => null],['created_at' => 'desc']) ;
-        $this->view->render($response, "/system/app/timeline.php" , [ 'tweets' => $tweets]);
+        $tweets = $this->TweetRepository->getTweets() ;
+        $QtdeTweets = count($this->TweetRepository->findBy(['user' => $_SESSION['id'], 'deleted_at' => null ]  ));
+        $this->view->render($response, "/system/app/timeline.php" , [ 
+            'tweets' => $tweets,
+            'QtdeTweets' => $QtdeTweets
+        ]);
     }
 
     public function tweetar ($request, $response){
@@ -48,6 +52,22 @@ class AppController extends Controller
         
         return $response->withRedirect("/app/timeline");
     }
+
+    public function RemoverTweet($request, $response, $hash = null){
+       
+        if($this->TweetService->deleteTweet($hash)){
+            return $response->withRedirect("/app/timeline?Excluir=true");
+         }else{
+            return $response->withRedirect("/app/timeline?Excluir=false");
+        }
+    }
+
+    public function quemSeguir ($request, $response, $pesquisarPor =null){
+        $usuarios = $this->UserRepository->getUser($pesquisarPor , $_SESSION['id']);
+       $this->view->render($response, "/system/app/quemSeguir.php", [ 'usuarios' => $usuarios ] );
+        
+    }
+
 
     
 

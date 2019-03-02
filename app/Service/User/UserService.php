@@ -58,7 +58,25 @@ class UserService
             return false;
         }
     }
-   
+
+    public function seguir($hash){
+        $userSeguir = $this->UserRepository->findOneBy(['hash' => $hash])->getId();
+        $userSeguidor = $_SESSION['id'];
+        
+        $this->UserRepository->addSeguidor($userSeguidor, $userSeguir);
+
+        return $userSeguir;
+
+    }   
+
+    public function pararSeguir($hash){
+        $userSeguir = $this->UserRepository->findOneBy(['hash' => $hash])->getId();
+        $userSeguidor = $_SESSION['id'];
+         
+        $this->UserRepository->pararSeguir($userSeguidor, $userSeguir);
+    
+        return true;
+        }
     /**
      * GERA UMA HASH UNICA PARA REGISTRO
      * SE EXISTE ELE GERA UMA NOVA - ATE ENCONTRAR

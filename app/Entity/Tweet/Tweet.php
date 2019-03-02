@@ -20,7 +20,7 @@ class Tweet extends Entity
     public $user;
 
     /**
-     * @ORM\Column(length=50, nullable=true)
+     * @ORM\Column(length=50, nullable=false)
      */
     public $tweet;
 

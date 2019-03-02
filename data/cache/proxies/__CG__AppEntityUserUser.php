@@ -108,10 +108,10 @@ class User extends \App\Entity\User\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'tweet', 'name', 'email', 'password', 'id', 'hash', 'created_at', 'updated_at', 'deleted_at'];
+            return ['__isInitialized__', 'seguindo', 'tweet', 'name', 'email', 'password', 'id', 'hash', 'created_at', 'updated_at', 'deleted_at'];
         }
 
-        return ['__isInitialized__', 'tweet', 'id', 'hash', 'created_at', 'updated_at', 'deleted_at'];
+        return ['__isInitialized__', 'seguindo', 'tweet', 'id', 'hash', 'created_at', 'updated_at', 'deleted_at'];
     }
 
     /**
@@ -326,6 +326,39 @@ class User extends \App\Entity\User\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPassword', [$password]);
 
         return parent::setPassword($password);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSeguindo()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSeguindo', []);
+
+        return parent::getSeguindo();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSeguindo($seguindo)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSeguindo', [$seguindo]);
+
+        return parent::setSeguindo($seguindo);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addSeguindo($seguindo)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addSeguindo', [$seguindo]);
+
+        return parent::addSeguindo($seguindo);
     }
 
     /**

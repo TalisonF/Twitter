@@ -43,8 +43,20 @@ class UserController extends Controller
         }    
     }
 
+    public function seguir ($request, $response, $hash = null){
+
+        $user = $this->UserService->seguir($hash);
+        return $response->withRedirect("/app/quemSeguir?seguindo=true");
+    }
+
+    public function pararSeguir ($request, $response, $hash = null){
+        echo($hash);
+        $user = $this->UserService->pararSeguir($hash);
+        return $response->withRedirect("/app/quemSeguir");
+    }
+
+
     public function sair($request, $response){
-        print_r($_SESSION);
         \session_destroy();
         return $response->withRedirect("/");
     }
