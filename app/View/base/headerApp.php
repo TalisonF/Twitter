@@ -29,15 +29,16 @@
 
           <div class="collapse navbar-collapse" id="nav-principal">
             <ul class="navbar-nav ml-auto">
+              <li class="nav-item d-lg-none d-md-none d-sm-block">
+								<a href="/app/quemSeguir" class="nav-link">Quem seguir</a>
+							</li>
               <li class="nav-item">
                 <a href="/app/timeline" class="nav-link">Home</a>
               </li>
               <li class="nav-item">
                 <a href="/app/sair" class="nav-link">Sair</a>
               </li>
-							<li class="nav-item d-lg-none d-md-none d-sm-block">
-								<a href="/app/quemSeguir" class="nav-link">Quem seguir</a>
-							</li>
+							
             </ul>
           </div>
         </div>

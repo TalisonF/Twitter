@@ -55,4 +55,20 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         return true;
     }
 
+    public function qtdeSeguindo($id_user){
+        $query = "select * from usuarios_seguidores where seguindo_user_id = :id_usuario ";
+        $stmt = $this->_em->getConnection()->prepare($query);
+        $stmt->bindValue(':id_usuario',$id_user);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function qtdeSeguidores($id_user){
+        $query = "select * from usuarios_seguidores where seguidor_user_id = :id_usuario ";
+        $stmt = $this->_em->getConnection()->prepare($query);
+        $stmt->bindValue(':id_usuario',$id_user);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }

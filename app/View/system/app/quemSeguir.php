@@ -21,19 +21,19 @@
 
 					<div class="row mb-2">
 
-					<div class="col">
+						<div class="col">
 							<span class="perfilPainelItem">Tweets</span><br />
-							<span class="perfilPainelItemValor"></span>
+							<span class="perfilPainelItemValor"><?=$QtdeTweets?></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguindo</span><br />
-							<span class="perfilPainelItemValor"></span>
+							<span class="perfilPainelItemValor"><?=$qtdeSeguindo?></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguidores</span><br />
-							<span class="perfilPainelItemValor"></span>
+							<span class="perfilPainelItemValor"><?=$qtdeSeguidores?></span>
 						</div>
 
 					</div>

@@ -27,12 +27,12 @@
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguindo</span><br />
-							<span class="perfilPainelItemValor">0</span>
+							<span class="perfilPainelItemValor"><?=$qtdeSeguindo?></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguidores</span><br />
-							<span class="perfilPainelItemValor">0</span>
+							<span class="perfilPainelItemValor"><?=$qtdeSeguidores?></span>
 						</div>
 
 					</div>
@@ -101,7 +101,7 @@
             <img src="/img/twitter_logo.png" />
           </div>
           <div class="col-10">
-			<?php if($_GET['Excluir'] == 'true') {?>
+			<?php if(isset($_GET['Excluir']) && $_GET['Excluir'] == 'true') {?>
             	Tweet excluido com sucesso!
 			<?php } else {?>
 				Falha ao exluir o Tweet!

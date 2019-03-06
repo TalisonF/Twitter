@@ -39,9 +39,13 @@ class AppController extends Controller
         
         $tweets = $this->TweetRepository->getTweets() ;
         $QtdeTweets = count($this->TweetRepository->findBy(['user' => $_SESSION['id'], 'deleted_at' => null ]  ));
+        $qtdeSeguindo = count($this->UserRepository->qtdeSeguindo($_SESSION['id'] ));
+        $qtdeSeguidores = count($this->UserRepository->qtdeSeguidores($_SESSION['id'] ));
         $this->view->render($response, "/system/app/timeline.php" , [ 
             'tweets' => $tweets,
-            'QtdeTweets' => $QtdeTweets
+            'QtdeTweets' => $QtdeTweets,
+            'qtdeSeguindo' => $qtdeSeguindo,
+            'qtdeSeguidores' => $qtdeSeguidores
         ]);
     }
 
@@ -63,8 +67,20 @@ class AppController extends Controller
     }
 
     public function quemSeguir ($request, $response, $pesquisarPor =null){
-        $usuarios = $this->UserRepository->getUser($pesquisarPor , $_SESSION['id']);
-       $this->view->render($response, "/system/app/quemSeguir.php", [ 'usuarios' => $usuarios ] );
+        $usuarios = null;
+        if($pesquisarPor != null ){
+            $usuarios = $this->UserRepository->getUser($pesquisarPor , $_SESSION['id']);
+        }
+        $QtdeTweets = count($this->TweetRepository->findBy(['user' => $_SESSION['id'], 'deleted_at' => null ]  ));
+        $qtdeSeguindo = count($this->UserRepository->qtdeSeguindo($_SESSION['id'] ));
+        $qtdeSeguidores = count($this->UserRepository->qtdeSeguidores($_SESSION['id'] ));
+        
+        $this->view->render($response, "/system/app/quemSeguir.php", [ 
+           'usuarios' => $usuarios,
+           'QtdeTweets' => $QtdeTweets,
+           'qtdeSeguindo' => $qtdeSeguindo,
+           'qtdeSeguidores' => $qtdeSeguidores
+        ] );
         
     }
 
