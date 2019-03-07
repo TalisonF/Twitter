@@ -1,4 +1,4 @@
-<?php include __DIR__ . "/../../base/headerApp.php"; ?>
+<?php include __DIR__ . "/../../base/headerApp.php"; print_r($_SESSION) ?>
 
 <div class="container mt-2">
 	<div class="row pt-2">

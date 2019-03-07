@@ -36,6 +36,10 @@ class AppController extends Controller
     protected $UserRepository;
 
     public function timeline($request, $response){
+
+        if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
+            return $response->withRedirect("/?erroLogin=force");
+        }
         
         $tweets = $this->TweetRepository->getTweets() ;
         $QtdeTweets = count($this->TweetRepository->findBy(['user' => $_SESSION['id'], 'deleted_at' => null ]  ));
@@ -50,6 +54,11 @@ class AppController extends Controller
     }
 
     public function tweetar ($request, $response){
+
+        if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
+            return $response->withRedirect("/?erroLogin=force");
+        }
+
         $post = $request->getParams();
         
         $this->TweetService->newTweet($post);
@@ -59,6 +68,10 @@ class AppController extends Controller
 
     public function RemoverTweet($request, $response, $hash = null){
        
+        if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
+            return $response->withRedirect("/?erroLogin=force");
+        }
+
         if($this->TweetService->deleteTweet($hash)){
             return $response->withRedirect("/app/timeline?Excluir=true");
          }else{
@@ -67,6 +80,11 @@ class AppController extends Controller
     }
 
     public function quemSeguir ($request, $response, $pesquisarPor =null){
+
+        if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
+            return $response->withRedirect("/?erroLogin=force");
+        }
+
         $usuarios = null;
         if($pesquisarPor != null ){
             $usuarios = $this->UserRepository->getUser($pesquisarPor , $_SESSION['id']);

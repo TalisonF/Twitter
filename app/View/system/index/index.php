@@ -35,9 +35,12 @@
 				<div class="col-lg-2 col-md-12 col-sm-6 pt-2 pl-2 pr-2">
 					<button type="submit" class="btn btn-primary col-md-12 mb-2">Entrar</button>
 				</div>
-				<?php if(isset($_GET['erroLogin']) && $_GET['erroLogin'] == true ) {?>
-					<small class="text-danger">*Email ou senha inseridos incorretamente!</small>
-				<?php } ?>	
+				<?php if(isset($_GET['erroLogin'])) {
+					if($_GET['erroLogin'] == 'force'){ ?>
+						<small class="text-danger">*Faça login primeiro</small>
+						<?php } else { ?>
+							<small class="text-danger">*Email ou senha inseridos incorretamente!</small>
+					<?php } } ?>	
 			</div>
 		
 				</form>

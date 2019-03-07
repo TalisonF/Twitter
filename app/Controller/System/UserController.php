@@ -45,12 +45,20 @@ class UserController extends Controller
 
     public function seguir ($request, $response, $hash = null){
 
+        if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
+            return $response->withRedirect("/?erroLogin=force");
+        }
+
         $user = $this->UserService->seguir($hash);
         return $response->withRedirect("/app/quemSeguir?seguindo=true");
     }
 
     public function pararSeguir ($request, $response, $hash = null){
-        echo($hash);
+
+        if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
+            return $response->withRedirect("/?erroLogin=force");
+        }
+
         $user = $this->UserService->pararSeguir($hash);
         return $response->withRedirect("/app/quemSeguir");
     }
