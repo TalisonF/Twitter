@@ -55,12 +55,18 @@ class UserController extends Controller
 
     public function pararSeguir ($request, $response, $hash = null){
 
+        $post = $request->getParams();
+
         if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
             return $response->withRedirect("/?erroLogin=force");
         }
 
         $user = $this->UserService->pararSeguir($hash);
-        return $response->withRedirect("/app/quemSeguir");
+        if($post['de'] == 'seguindo'){
+            return $response->withRedirect("/app/seguindo");
+        }else {
+          return $response->withRedirect("/app/quemSeguir");
+        }
     }
 
 

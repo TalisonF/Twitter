@@ -25,6 +25,8 @@ $app->group('/app', function(){
     
     $this->get('/remover_tweet/[{hash}]',['\App\Controller\System\AppController', 'RemoverTweet']);
 
+    $this->get('/seguindo[/{hash}]',['\App\Controller\System\AppController', 'seguindo']);
+
 
 
     $this->post('/tweetar',['\App\Controller\System\AppController', 'tweetar']);

@@ -102,7 +102,21 @@ class AppController extends Controller
         
     }
 
+    public function seguindo($request, $response){
+        $QtdeTweets = count($this->TweetRepository->findBy(['user' => $_SESSION['id'], 'deleted_at' => null ]  ));
+        $qtdeSeguindo = count($this->UserRepository->qtdeSeguindo($_SESSION['id'] ));
+        $qtdeSeguidores = count($this->UserRepository->qtdeSeguidores($_SESSION['id'] ));
+        $usuarios = $this->UserRepository->getUser('' , $_SESSION['id']);
+        
 
+
+        $this->view->render($response, "/system/app/seguindo.php", [ 
+            'usuarios' => $usuarios,
+            'QtdeTweets' => $QtdeTweets,
+            'qtdeSeguindo' => $qtdeSeguindo,
+            'qtdeSeguidores' => $qtdeSeguidores
+         ] );
     
+    }
 
 }
