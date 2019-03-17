@@ -19,7 +19,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
           
-          <a href="#" class="navbar-brand">
+          <a href="/app/timeline" class="navbar-brand">
             <img src="/img/twitter_logo.png" width="30">
           </a>
 

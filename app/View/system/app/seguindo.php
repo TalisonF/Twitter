@@ -10,7 +10,7 @@
 
             <div class="row mb-2">
                 <div class="col">
-                    <h3>Usuarios que você segue</h3>
+                    <h3 class="text-primary">Usuarios que você segue</h3>
                 </div>
             </div>
             <?php foreach ($usuarios as $usuario) {

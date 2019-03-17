@@ -49,7 +49,7 @@ class UserService
     public function validar($post){
         
         $user = $this->UserRepository->findOneBy(['email' => $post['email'] , 'password' => md5($post['senha'])]);
-        if(is_object($user)){
+        if(is_object($user) && ($user->getHash() != '' && $user->getName() != '' && $user->getId() != '' )){
             $_SESSION['hash'] = $user->getHash();
             $_SESSION['nome'] = $user->getName();
             $_SESSION['id'] = $user->getId();
