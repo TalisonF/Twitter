@@ -103,6 +103,9 @@ class AppController extends Controller
     }
 
     public function seguindo($request, $response){
+        if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
+            return $response->withRedirect("/?erroLogin=force");
+        }
         $QtdeTweets = count($this->TweetRepository->findBy(['user' => $_SESSION['id'], 'deleted_at' => null ]  ));
         $qtdeSeguindo = count($this->UserRepository->qtdeSeguindo($_SESSION['id'] ));
         $qtdeSeguidores = count($this->UserRepository->qtdeSeguidores($_SESSION['id'] ));
@@ -118,5 +121,26 @@ class AppController extends Controller
          ] );
     
     }
+    public function seguidores($request, $response){
+        if(!(isset($_SESSION['hash']) && isset($_SESSION['nome']) && isset($_SESSION['id']))){
+            return $response->withRedirect("/?erroLogin=force");
+        }
+        $QtdeTweets = count($this->TweetRepository->findBy(['user' => $_SESSION['id'], 'deleted_at' => null ]  ));
+        $qtdeSeguindo = count($this->UserRepository->qtdeSeguindo($_SESSION['id'] ));
+        $qtdeSeguidores = count($this->UserRepository->qtdeSeguidores($_SESSION['id'] ));
+        $usuarios = $this->UserRepository->qtdeSeguidores($_SESSION['id'] );
+        
+
+
+        $this->view->render($response, "/system/app/seguidores.php", [ 
+            'usuarios' => $usuarios,
+            'QtdeTweets' => $QtdeTweets,
+            'qtdeSeguindo' => $qtdeSeguindo,
+            'qtdeSeguidores' => $qtdeSeguidores
+         ] );
+    
+    }
+
+    
 
 }

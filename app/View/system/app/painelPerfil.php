@@ -26,10 +26,9 @@
 						</div>
 
 						<div class="col">
-							<span class="perfilPainelItem">Seguidores</span><br />
+							<span class="perfilPainelItem"><a class="quemSeguirTxt" href="/app/seguidores">Seguidores</a></span><br/>
 							<span class="perfilPainelItemValor"><?=$qtdeSeguidores?></span>
 						</div>
-
 					</div>
 
 				</div>

@@ -64,7 +64,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     }
 
     public function qtdeSeguidores($id_user){
-        $query = "select * from usuarios_seguidores where seguidor_user_id = :id_usuario ";
+        $query = "select User.name from usuarios_seguidores, User where seguidor_user_id = :id_usuario and User.id = seguindo_user_id  ";
         $stmt = $this->_em->getConnection()->prepare($query);
         $stmt->bindValue(':id_usuario',$id_user);
         $stmt->execute();
