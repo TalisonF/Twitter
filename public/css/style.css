@@ -101,7 +101,6 @@ h2 {
 }
 
 .perfil {
-    border: 1px solid #e6ecf0;
     background: #fff;
     position: relative;
     margin-bottom: 10px;
@@ -109,9 +108,17 @@ h2 {
     width: 100%;
 }
 
-.perfilTopo {
-    height: 95px;
-    background-color: #1DA1F2
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.fundo-avatar{
+    min-height: 120px;
+    min-width: 100%;
+    background: rgb(34,193,195);
+    background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(41,144,232,0.7763480392156863) 27%, rgba(255,255,255,0) 100%);
 }
 
 .perfilPainel {
@@ -191,3 +198,49 @@ h2 {
     background-color : #1da1f2;
     color: white;
 }
+
+.fundo-avatar {
+	color: #fff;
+	background: linear-gradient(-45deg, rgb(186, 193, 219), rgb(0, 68, 255), #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
